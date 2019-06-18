@@ -7,7 +7,7 @@
         </label>
 
         <ul style="list-style: none; text-align: left; width: 50%; margin: 0px auto;">
-            <li v-for="val in uniqueResults">{{ val }}</li>
+            <li v-for="val in displayData">{{ val }}</li>
         </ul>
 
     </div>
@@ -26,7 +26,7 @@ export default {
     },
     data() {
         return {
-            uniqueResults: false
+            displayData: []
         }
     },
     methods: {
@@ -44,7 +44,11 @@ export default {
                     results.push(matchVal.join(''));
                 })
 
-                this.uniqueResults = _.unique(results);
+                let uniqueResults = _.unique(results);
+
+                _.each(uniqueResults, val => {
+                    this.displayData.push(val + ': ' + val);
+                });
 
             
                 
